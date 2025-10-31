@@ -24,7 +24,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="h-full lg:min-h-screen md:min-h-screen w-full font-sans text-white">
+    <div id="home" className="h-full lg:min-h-screen md:min-h-screen w-full font-sans text-white">
       <BubbleCanvas />
       <Navigation onContact={() => setOpenContact(true)} projects={projects} />
 

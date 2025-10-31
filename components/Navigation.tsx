@@ -37,14 +37,13 @@ export default function Navigation({ onContact, projects }: Props) {
     <>
       <header className="flex backdrop-blur-md justify-center fixed top-0 left-0 z-50 w-full">
         <div className="w-full flex items-center justify-between py-4 max-w-7xl mx-auto">
-          <a href="/" className="py-2 text-4xl no-underline font-bold brand-gradient">
+          <a href="/#home" className="py-2 text-4xl no-underline font-bold brand-gradient">
             DevFolio
           </a>
 
           <nav className="flex gap-6 text-[16px] items-center">
             {/* Desktop nav - hidden on small screens */}
             <div className="hidden md:flex items-center gap-6">
-              <a href="/" className="relative px-2 nav-link no-underline transition duration-300">Home</a>
               <button onClick={() => setShowProjects((s) => !s)} className="relative px-2 nav-link no-underline transition duration-300">Projects</button>
               <a href="/about" className="relative px-2 nav-link no-underline transition duration-300">About</a>
               <a href="/skills" className="relative px-2 nav-link no-underline transition duration-300">Skills</a>
