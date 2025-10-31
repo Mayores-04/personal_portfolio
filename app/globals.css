@@ -1,8 +1,26 @@
 @import "tailwindcss";
 
+html{
+  scroll-behavior: smooth;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Palette taken from About page (applied globally) */
+  --bg-r1: rgba(8,35,52,0.6);
+  --bg-r2: rgba(6,16,26,0.85);
+  --bg-r3: rgba(4,10,16,1);
+  --accent: #7cd4ff; /* bright cyan */
+  --accent-2: #ffb400; /* warm gold */
+  --muted: #7695a3;
+  --muted-light: #a9c0cc;
+  --page-text: #c5eafa; /* used for headings */
+  --nav: #375063;
+  --nav-hover: #4f85a2;
+  --cta: #ffb400;
+  --cta-hover: #7bb1ce;
+  /* fallbacks for legacy global usage */
+  --background: radial-gradient(1200px 600px at 50% 40%, var(--bg-r1) 0%, var(--bg-r2) 60%, var(--bg-r3) 100%);
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -23,4 +41,187 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Theme helper classes (use these in components instead of hard-coded hexes) */
+.brand-gradient {
+  background-image: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-page { color: var(--page-text); }
+.text-accent { color: var(--accent); }
+.text-muted { color: var(--muted); }
+.text-muted-light { color: var(--muted-light); }
+
+.btn-cta { background: var(--cta); color: white; border: 2px solid var(--cta); }
+.btn-cta:hover { background: transparent; color: var(--accent); }
+
+.btn-primary { background: var(--nav); color: white; }
+.btn-primary:hover { background: var(--nav-hover); }
+
+.nav-link { color: var(--page-text); transition: color .2s ease; }
+.nav-link:hover { color: var(--accent); }
+
+.popover-bg { background: rgba(0,0,0,0.36); border: 1px solid rgba(255,255,255,0.06); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+
+.project-title { color: var(--page-text); }
+.project-desc { color: var(--muted-light); }
+
+.border-nav { border-color: var(--nav-hover); }
+
+/* Animated background shading */
+.animated-shading {
+  background-image: linear-gradient(to bottom right, #061327, #394a72, #0000ff);
+  background-size: 300% 100%;
+  animation: shade-shift 8s linear infinite alternate;
+}
+
+@keyframes shade-shift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+/* Typing blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink { animation: blink 1.5s linear infinite; }
+
+/* Canvas above background but behind content */
+#bubbleCanvas { z-index: 40; }
+
+/* Projects (book flip) section - replaces old bubble layout
+   Use semantic helpers for layout; the flipbook component has its own
+   internal styles, so these are lightweight container rules that
+   provide spacing and responsive behavior for the Projects area. */
+.project-section,
+#project,
+.pf-section {
+  position: relative;
+  width: 100%;
+  padding: 4.5rem 0; /* generous vertical spacing for the book */
+  box-sizing: border-box;
+}
+
+/* Provide a small min-height so page has room for the book on small viewports */
+.project-section {
+  min-height: 420px;
+}
+
+/* Neutral project card helper in case some legacy markup still uses .project-bubble */
+.project-card,
+.project-bubble {
+  display: block;
+  box-sizing: border-box;
+}
+
+/* If legacy bubble markup is present, ensure it doesn't visually clash with the book */
+.project-bubble > div,
+.project-card > div {
+  transition: none;
+}
+
+/* Images inside legacy project items should scale sensibly */
+.project-bubble img,
+.project-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .project-section {
+    padding: 3rem 0;
+    min-height: 360px;
+  }
+}
+
+/* ===================================== */
+/* ✅ Skills Morph Section Styles */
+/* ===================================== */
+
+.skills-morph {
+  position: relative;
+  overflow: hidden;
+}
+
+.skills-morph-svg {
+  display: block;
+  height: 260px;
+}
+
+/* The marquee container */
+.skills-marquee {
+  position: absolute;
+  left: 0;
+  top: 3rem; 
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* ensure the first group's items appear immediately from the left */
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Infinite scroll setup */
+.skills-track {
+  display: flex;
+  width: max-content;
+  gap: 2rem;
+}
+
+.skills-track.ready {
+  animation: scrollLoop var(--duration, 25s) linear infinite;
+  will-change: transform; /* hint to the browser for smoother animation */
+}
+
+/* True continuous scrolling */
+@keyframes scrollLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--track-width, 100%))); }
+}
+
+/* Reduce motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .skills-morph .morph-path,
+  .skills-morph .morph-wave,
+  .skill-pill,
+  .skills-track,
+  .skills-track.ready {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Skill icon styles */
+.skill-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-pill i {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.skill-pill:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
