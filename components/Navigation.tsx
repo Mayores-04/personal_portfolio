@@ -19,6 +19,7 @@ type Props = {
 export default function Navigation({ onContact, projects }: Props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const popRef = useRef<HTMLDivElement | null>(null);
 
   const projectsToShow = projects ?? defaultProjects;
@@ -40,12 +41,30 @@ export default function Navigation({ onContact, projects }: Props) {
             DevFolio
           </a>
 
-          <nav className="flex gap-6 text-[16px]">
-            <a href="/" className="relative px-2 nav-link no-underline transition duration-300">Home</a>
-            <button onClick={() => setShowProjects((s) => !s)} className="relative px-2 nav-link no-underline transition duration-300">Projects</button>
-            <a href="/about" className="relative px-2 nav-link no-underline transition duration-300">About</a>
-            <a href="/skills" className="relative px-2 nav-link no-underline transition duration-300">Skills</a>
-            <a href="/contact" className="relative px-2 nav-link no-underline transition duration-300">Contact</a>
+          <nav className="flex gap-6 text-[16px] items-center">
+            {/* Desktop nav - hidden on small screens */}
+            <div className="hidden md:flex items-center gap-6">
+              <a href="/" className="relative px-2 nav-link no-underline transition duration-300">Home</a>
+              <button onClick={() => setShowProjects((s) => !s)} className="relative px-2 nav-link no-underline transition duration-300">Projects</button>
+              <a href="/about" className="relative px-2 nav-link no-underline transition duration-300">About</a>
+              <a href="/skills" className="relative px-2 nav-link no-underline transition duration-300">Skills</a>
+              <a href="/contact" className="relative px-2 nav-link no-underline transition duration-300">Contact</a>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center">
+              <button
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                onClick={() => setMobileMenuOpen((s) => !s)}
+                className="p-2 rounded-md bg-black/20 hover:bg-black/30 transition"
+              >
+                {mobileMenuOpen ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                )}
+              </button>
+            </div>
           </nav>
         </div>
       </header>
@@ -76,6 +95,40 @@ export default function Navigation({ onContact, projects }: Props) {
       )}
 
       <ContactModal open={modalOpen} onClose={() => setModalOpen(false)} projects={projectsToShow} />
+
+      {/* Mobile full-screen menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-70 bg-black/75 md:hidden">
+          <div className="absolute top-4 right-4">
+            <button aria-label="Close menu" onClick={() => setMobileMenuOpen(false)} className="p-2 rounded-md bg-white/6">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+
+          <div className="h-full flex flex-col items-center justify-center gap-6 p-6 text-center">
+            <a href="/" onClick={() => setMobileMenuOpen(false)} className="text-2xl nav-link">Home</a>
+            <button onClick={() => { setShowProjects((s) => !s); }} className="text-2xl nav-link">Projects</button>
+            <a href="/about" onClick={() => setMobileMenuOpen(false)} className="text-2xl nav-link">About</a>
+            <a href="/skills" onClick={() => setMobileMenuOpen(false)} className="text-2xl nav-link">Skills</a>
+            <a href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-2xl nav-link">Contact</a>
+
+            {/* show a small projects list inside the mobile menu if toggled */}
+            {showProjects && (
+              <div className="w-full max-w-md mt-4 bg-gray-900/60 rounded-lg p-4">
+                {projectsToShow.slice(0, 5).map((p, i) => (
+                  <a key={i} href={`/?openProject=${i}`} onClick={() => setMobileMenuOpen(false)} className="flex gap-3 items-center p-2 rounded-md hover:bg-white/5 transition">
+                    <img src={p.image} alt={p.Title} className="w-16 h-12 object-cover rounded-md" />
+                    <div className="flex-1 text-left">
+                      <div className="text-sm font-semibold project-title">{p.Title}</div>
+                      <div className="text-xs project-desc line-clamp-2">{p.desc}</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }
