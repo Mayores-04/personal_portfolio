@@ -182,7 +182,7 @@ export default function ContactModal({ open, onClose, projects }: Props) {
               <button
                 key={i}
                 onClick={() => { setExpanded(true); document.documentElement.style.overflow = 'hidden'; }}
-                className="ml-[-24px] first:ml-0 w-36 h-44 rounded-lg overflow-hidden border border-white/10 bg-black/20 shadow-lg transform transition-all hover:scale-105"
+                className="-ml-6 first:ml-0 w-36 h-44 rounded-lg overflow-hidden border border-white/10 bg-black/20 shadow-lg transform transition-all hover:scale-105"
                 style={{ zIndex: 100 + i, rotate: `${(i - Math.floor(projects.length/2)) * 4}deg` }}
                 aria-label={`Open project preview ${p.Title}`}
               >

@@ -57,7 +57,7 @@ export default function Home() {
           </div>
 
           <div className="flex gap-3 mt-6">
-            <a className="text-2xl font-bold px-4 py-2 rounded-lg border-2 project-title border-nav hover:bg-[var(--cta)] hover:text-white transition">
+            <a className="text-2xl font-bold px-4 py-2 rounded-lg border-2 project-title border-nav hover:bg-(--cta) hover:text-white transition">
               Hire me
             </a>
             <button

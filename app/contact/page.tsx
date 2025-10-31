@@ -54,22 +54,22 @@ export default function ContactPage() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-lg font-semibold mt-4">
-                  <a href="https://www.linkedin.com/in/jake-mayores-81677530a" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-[#0077b5] to-[#00a1e6] text-white shadow-md hover:scale-105 transition">
+                  <a href="https://www.linkedin.com/in/jake-mayores-81677530a" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 rounded-xl bg-linear-to-r from-[#0077b5] to-[#00a1e6] text-white shadow-md hover:scale-105 transition">
                     <i className="fab fa-linkedin text-2xl" />
                     <span>Connect on LinkedIn</span>
                   </a>
 
-                  <a href="https://twitter.com/your-profile" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-black to-gray-700 text-white shadow-md hover:scale-105 transition">
+                  <a href="https://twitter.com/your-profile" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 rounded-xl bg-linear-to-r from-black to-gray-700 text-white shadow-md hover:scale-105 transition">
                     <i className="fab fa-x-twitter text-2xl" />
                     <span>Follow on X</span>
                   </a>
 
-                  <a href="https://www.instagram.com/mayoresjake" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#8134af] text-white shadow-md hover:scale-105 transition">
+                  <a href="https://www.instagram.com/mayoresjake" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 rounded-xl bg-linear-to-r from-[#f58529] via-[#dd2a7b] to-[#8134af] text-white shadow-md hover:scale-105 transition">
                     <i className="fab fa-instagram text-2xl" />
                     <span>Follow on Instagram</span>
                   </a>
 
-                  <a href="https://www.facebook.com/jakejmayores" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-[#1877f2] to-[#3dc1fc] text-white shadow-md hover:scale-105 transition">
+                  <a href="https://www.facebook.com/jakejmayores" target="_blank" rel="noreferrer" className="flex items-center gap-3 p-4 rounded-xl bg-linear-to-r from-[#1877f2] to-[#3dc1fc] text-white shadow-md hover:scale-105 transition">
                     <i className="fab fa-facebook text-2xl" />
                     <span>Follow on Facebook</span>
                   </a>
