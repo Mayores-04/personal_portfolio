@@ -7,7 +7,7 @@ import { Sparkles, Heart, Target, Lightbulb } from "lucide-react";
 
 const values = [
   { icon: Sparkles, title: "Creativity", description: "Bringing unique and innovative ideas to every project" },
-  { icon: Heart, title: "Passion", description: "Loving what I do and putting heart into every design" },
+  { icon: Heart, title: "Passion", description: "Loving what I do and putting heart into every work" },
   { icon: Target, title: "Excellence", description: "Committed to delivering high-quality work every time" },
   { icon: Lightbulb, title: "Innovation", description: "Always exploring new techniques and creative solutions" },
 ];
