@@ -5,11 +5,13 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SkillMorph from "@/components/SkillMorph";
 import { Sparkles } from "lucide-react";
+import BubbleCanvas from "@/components/BubbleCanvas";
 
 export default function SkillsPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[radial-gradient(1200px_600px_at_50%_40%,rgba(8,35,52,0.6)_0%,rgba(6,16,26,0.85)_60%,rgba(4,10,16,1)_100%)] text-white">
       <Navigation />
+            <BubbleCanvas />
 
       <main className="flex-1 pt-28">
         <section className="py-16">

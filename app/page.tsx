@@ -72,9 +72,12 @@ export default function Home() {
         </section>
         
         <aside className="w-full lg:w-auto flex items-center justify-center lg:justify-end mt-6 sm:mt-8 md:mt-10 lg:mt-0">
-          <img
-            src="https://mayores-jake.infinityfreeapp.com/images/profile.png"
+          <Image
+            src="/images/image.png"
             alt="profile picture"
+            priority
+            width={500}
+            height={500}
             className="w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 2xl:w-[500px] 2xl:h-[500px] object-cover border-2 border-nav rounded-3xl md:rounded-[40px] lg:rounded-[48px] xl:rounded-[60px] transition duration-500 hover:shadow-[0_0_25px_rgba(0,255,255,0.6)] hover:scale-105"
           />
         </aside>

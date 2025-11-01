@@ -4,6 +4,8 @@ import React, { useState, useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Sparkles, Heart, Target, Lightbulb } from "lucide-react";
+import Image from "next/image";
+import BubbleCanvas from "@/components/BubbleCanvas";
 
 const values = [
   { icon: Sparkles, title: "Creativity", description: "Bringing unique and innovative ideas to every project" },
@@ -44,6 +46,7 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col bg-[radial-gradient(1200px_600px_at_50%_40%,rgba(8,35,52,0.6)_0%,rgba(6,16,26,0.85)_60%,rgba(4,10,16,1)_100%)] text-white">
       <Navigation />
 
+      <BubbleCanvas />
       <main className="flex-1 pt-28">
         <section className="py-12">
           <div className="max-w-6xl mx-auto px-4">
@@ -85,8 +88,8 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="flex justify-end">
-                <img src="/images/profile.png" alt="profile" className="rounded-lg w-64 h-64 object-cover shadow-lg" />
+              <div className="flex justify-center md:justify-end">
+                <Image src="/images/image.png" priority alt="profile" width={256} height={256} className="rounded-lg w-64 h-64 object-cover shadow-lg" />
               </div>
             </div>
           </div>
@@ -120,9 +123,12 @@ export default function AboutPage() {
               <div className="grid md:grid-cols-3 gap-6">
                 {ACHIEVEMENTS.map((a, idx) => (
                   <div key={idx} className="bg-white rounded-lg overflow-hidden shadow-lg">
-                    <img
+                    <Image
                       src={a.image}
                       alt={a.title}
+                      priority
+                      width={600}
+                      height={192}
                       className="w-full h-48 object-cover cursor-pointer"
                       onClick={() => setZoomImage(a.image)}
                     />
@@ -140,7 +146,14 @@ export default function AboutPage() {
         {/* Zoom modal for images */}
         {zoomImage && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50" onClick={() => setZoomImage(null)}>
-            <img src={zoomImage} alt="zoom" className="max-w-[90%] max-h-[90%] rounded-lg object-contain" />
+            <Image
+              src={zoomImage}
+              priority
+              alt="zoom"
+              width={1200}
+              height={800}
+              className="max-w-[90%] max-h-[90%] rounded-lg object-contain"
+            />
           </div>
         )}
       </main>
