@@ -37,7 +37,7 @@ export default function Navigation({ onContact, projects }: Props) {
   return (
     <>
       <header className="flex backdrop-blur-md justify-center fixed top-0 left-0 z-50 w-full">
-        <div className="w-full flex items-center justify-between py-4 max-w-7xl mx-auto">
+        <div className="w-full flex items-center justify-between py-4 max-w-7xl mx-auto px-3">
           <Link
             href="/#home"
             className="py-2 text-4xl no-underline font-bold brand-gradient"
@@ -167,7 +167,7 @@ export default function Navigation({ onContact, projects }: Props) {
       {/* Mobile full-screen menu */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-70 bg-black/75 md:hidden">
-          <div className="absolute top-4 right-4">
+          <div className="absolute top-6.5 right-3 ">
             <button
               aria-label="Close menu"
               onClick={() => setMobileMenuOpen(false)}
