@@ -53,7 +53,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <h1 className="text-4xl font-bold">About Me</h1>
-                <p className="text-lg text-[#a9c0cc]">Hi — I'm Jake Mayores, a front-end developer passionate about building delightful interfaces.</p>
+                <p className="text-lg text-[#a9c0cc]">Hi — I'm Jake Mayores, a 2nd-year college computer science student specializing in web development.</p>
 
                 <div className="flex gap-3">
                   <a
@@ -82,14 +82,13 @@ export default function AboutPage() {
 
                 <div className="space-y-4 text-[#c9d8df]">
                   <p>
-                    I'm a passionate Front-End Web Developer with a strong Computer Science background. Skilled in HTML, CSS,
-                    JavaScript, and familiar with React, Next.js and TailwindCSS.
+                    I’m a passionate Front-End Web Developer with a strong Computer Science background. Skilled in HTML, CSS, JavaScript, C# and familiar with ReactJS, NodeJS, and TailwindCSS, I have gained valuable experience through freelance web development and as a front-end web developer in my school organization. Currently, I am exploring NextJS development to create dynamic and interactive web applications.
                   </p>
                 </div>
               </div>
 
               <div className="flex justify-center md:justify-end">
-                <Image src="/images/image.png" priority alt="profile" width={256} height={256} className="rounded-lg w-64 h-64 object-cover shadow-lg" />
+                <Image src="/images/image.png" priority alt="profile" width={300} height={300} className="rounded-lg w-64 h-64 object-cover shadow-lg" />
               </div>
             </div>
           </div>

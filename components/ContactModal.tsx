@@ -13,11 +13,9 @@ type Props = {
   open: boolean;
   onClose: () => void;
   projects?: Project[];
-  /** mode: 'contact' shows the contact UI; 'projects' shows a projects grid */
-  mode?: "contact" | "projects";
 };
 
-export default function ContactModal({ open, onClose, projects, mode }: Props) {
+export default function ContactModal({ open, onClose, projects }: Props) {
   const [expanded, setExpanded] = React.useState(false);
   const [dragging, setDragging] = React.useState(false);
   const [dragY, setDragY] = React.useState(0);
@@ -33,21 +31,6 @@ export default function ContactModal({ open, onClose, projects, mode }: Props) {
       document.documentElement.style.overflow = '';
     }
   }, [open]);
-
-  // If the modal is opened in projects mode, start expanded so we show the
-  // project cards immediately. If opened in contact mode, keep the collapsed
-  // flyout so users can drag it open.
-  React.useEffect(() => {
-    if (!open) return;
-    if (mode === "projects") {
-      setExpanded(true);
-      document.documentElement.style.overflow = 'hidden';
-    } else {
-      // contact flyout defaults collapsed (unless user drags/expands)
-      setExpanded(false);
-      document.documentElement.style.overflow = '';
-    }
-  }, [open, mode]);
 
   if (!open) return null;
 
@@ -166,51 +149,27 @@ export default function ContactModal({ open, onClose, projects, mode }: Props) {
             </div>
 
             {expanded ? (
-              mode === "projects" ? (
-                <div className="bg-white/5 rounded-xl p-6 shadow-lg text-white border border-white/6">
-                  <h2 className="text-2xl font-bold mb-4">Projects</h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {projects && projects.length > 0 ? (
-                      projects.map((p, i) => (
-                        <div key={i} className="p-4 rounded-lg bg-white/6 border border-white/6">
-                          <div className="h-40 mb-3 overflow-hidden rounded-md bg-black/20">
-                            <img src={p.image} alt={p.Title} className="w-full h-full object-cover" />
-                          </div>
-                          <h3 className="font-semibold text-lg mb-1">{p.Title}</h3>
-                          <p className="text-sm text-[#c9d8df] mb-3 line-clamp-3">{p.desc}</p>
-                          {p.link && (
-                            <a href={p.link} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-2 bg-[#ffb400] text-[#071828] rounded-md font-semibold">View Project</a>
-                          )}
-                        </div>
-                      ))
-                    ) : (
-                      <div className="text-sm text-[#a9c0cc]">No projects available.</div>
-                    )}
+              <div className="bg-white/5 rounded-xl p-6 shadow-lg text-white border border-white/6">
+                <h2 className="text-2xl font-bold mb-4">Send a Message</h2>
+                <form className="space-y-4">
+                  <input type="text" placeholder="Your Name"
+                    className="w-full border border-white/10 bg-transparent text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#7cd4ff]" required />
+
+                  <input type="email" placeholder="Your Email"
+                    className="w-full border border-white/10 bg-transparent text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#7cd4ff]" required />
+
+                  <textarea placeholder="Your Message" rows={6}
+                    className="w-full border border-white/10 bg-transparent text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#7cd4ff] resize-none" required />
+
+                  <div className="flex gap-3">
+                    <button type="submit"
+                      className="flex-1 bg-[#ffb400] text-[#071828] font-semibold rounded-lg py-2 hover:opacity-95 transition">
+                      Send Message
+                    </button>
+                    <button type="button" onClick={collapse} className="flex-1 border border-white/10 rounded-lg py-2">Close</button>
                   </div>
-                </div>
-              ) : (
-                <div className="bg-white/5 rounded-xl p-6 shadow-lg text-white border border-white/6">
-                  <h2 className="text-2xl font-bold mb-4">Send a Message</h2>
-                  <form className="space-y-4">
-                    <input type="text" placeholder="Your Name"
-                      className="w-full border border-white/10 bg-transparent text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#7cd4ff]" required />
-
-                    <input type="email" placeholder="Your Email"
-                      className="w-full border border-white/10 bg-transparent text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#7cd4ff]" required />
-
-                    <textarea placeholder="Your Message" rows={6}
-                      className="w-full border border-white/10 bg-transparent text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#7cd4ff] resize-none" required />
-
-                    <div className="flex gap-3">
-                      <button type="submit"
-                        className="flex-1 bg-[#ffb400] text-[#071828] font-semibold rounded-lg py-2 hover:opacity-95 transition">
-                        Send Message
-                      </button>
-                      <button type="button" onClick={collapse} className="flex-1 border border-white/10 rounded-lg py-2">Close</button>
-                    </div>
-                  </form>
-                </div>
-              )
+                </form>
+              </div>
             ) : null}
           </div>
         </div>
