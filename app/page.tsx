@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
+import ContactModal from "../components/ContactModal";
 import Footer from "../components/Footer";
 import BubbleCanvas from "../components/BubbleCanvas";
 import Typing from "../components/Typing";
@@ -11,6 +12,7 @@ import ProjectFlip from "../components/ProjectFlip";
 
 import projects from "@/data/projects";
 import React from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [openContact, setOpenContact] = useState(false);
@@ -59,15 +61,18 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-5 md:mt-6">
-            <a className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 project-title border-nav hover:bg-cta hover:text-white transition duration-300 text-center cursor-pointer">
-              Hire me
-            </a>
-            <button
-              onClick={() => setOpenContact(true)}
+            <Link
+              href="#project"
+              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 project-title border-nav hover:bg-cta hover:text-white transition duration-300 text-center cursor-pointer"
+            >
+              Browse Projects
+            </Link>
+            <Link
+              href="/contact"
               className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg btn-cta text-center transition duration-300"
             >
               Contact me
-            </button>
+            </Link>
           </div>
         </section>
         
@@ -89,7 +94,10 @@ export default function Home() {
       {/* Projects interactive bubbles section */}
       <ProjectFlip projects={projects} openIndex={openIndex} />
 
-      <Footer />
+  {/* Contact modal (global) */}
+  <ContactModal open={openContact} onClose={() => setOpenContact(false)} projects={projects} />
+
+  <Footer />
     </div>
   );
 }

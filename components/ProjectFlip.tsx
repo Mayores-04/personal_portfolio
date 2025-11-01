@@ -32,6 +32,7 @@ const IntroCover = React.forwardRef<HTMLDivElement>((_, ref) => (
     <div className="text-center">
       <h3 className="text-2xl sm:text-3xl font-bold text-[#c5eafa] mb-2">Some of my personal projects</h3>
       <p className="text-sm sm:text-base text-[#7695a3] max-w-xl mx-auto">Browse a selection of projects I built — apps, experiments, and portfolio pieces demonstrating front-end and full-stack work.</p>
+   
     </div>
   </div>
 ));
@@ -260,6 +261,7 @@ export default function ProjectBook({ projects, openIndex }: Props) {
                   {projects.map((p, i) => (
                     <Page key={i} project={p} pageNumber={i + 2} />
                   ))}
+                  
                   <BackCover />
                 </HTMLFlipBook>
               </div>
