@@ -85,7 +85,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="flex justify-center">
+              <div className="flex justify-end">
                 <img src="/images/profile.png" alt="profile" className="rounded-lg w-64 h-64 object-cover shadow-lg" />
               </div>
             </div>
