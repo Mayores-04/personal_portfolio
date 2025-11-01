@@ -197,14 +197,12 @@ export default function Navigation({ onContact, projects }: Props) {
             >
               Home
             </Link>
-            <button
-              onClick={() => {
-                setShowProjects((s) => !s);
-              }}
+            <Link
+              href="/#project"
               className="text-2xl nav-link"
             >
               Projects
-            </button>
+            </Link>
             <Link
               href="/about"
               onClick={() => setMobileMenuOpen(false)}
@@ -227,7 +225,7 @@ export default function Navigation({ onContact, projects }: Props) {
               Contact
             </Link>
 
-            {/* show a small projects list inside the mobile menu if toggled */}
+            {/* show a small projects list inside the mobile menu if toggled
             {showProjects && (
               <div className="w-full max-w-md mt-4 bg-gray-900/60 rounded-lg p-4">
                 {projectsToShow.slice(0, 5).map((p, i) => (
@@ -253,7 +251,7 @@ export default function Navigation({ onContact, projects }: Props) {
                   </a>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
         </div>
       )}
